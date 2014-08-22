@@ -1,0 +1,44 @@
+extends ../shared/template
+block content
+  .row
+    h2.text-center Create a Trip
+  .row
+    .col-md-12
+      form.form.form-horizontal(roll='form', method='post', action='/trips', enctype='multipart/form-data')
+        .form-group
+          label Name of Trip
+            input.form-control(type='text', name='name', placeholder='Grand Canyon Adventure')
+        .form-group
+          label Cash
+            input.form-control(type='number', name='cash', steps='any', placeholder='500')
+        .form-group
+          label Origin
+            input.form-control(type='text', name='origin', placeholder='Nashville')
+            input#originLat(type='hidden', name='lat')
+            input#originLng(type='hidden', name='lng')
+        .form-group
+          label Destination
+            input.form-control(type='text', name='destination', placeholder='Grand Canyon')
+            input#destinationLat(type='hidden', name='lat')
+            input#destinationLng(type='hidden', name='lng')
+        .form-group
+          label Chariot
+            input.form-control(type='file', name='carPhoto')
+        .form-group
+          label Start Date
+            input.form-control(type='date', name='start')
+        .form-group
+          label End Date
+            input.form-control(type='date', name='end')
+        .form-group
+          label Your Chariot's Miles Per Gallon
+            input.form-control(type='number', name='mpg', placeholder='25')
+        .form-group
+          label Price of Gas Per Gallon
+            input.form-control(type='number', name='price', placeholder='3.50', step='any')
+        .form-group
+          button.btn.btn-success.btn-block(type='submit') Submit
+
+block scripts
+  script(src='/js/user/new-trip.js')
+
