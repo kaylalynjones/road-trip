@@ -1,15 +1,5 @@
-.navbar.navbar-default(role='navigation')
-  .container
-    .navbar-header
-      button.navbar-toggle(data-toggle='collapse', data-target='#bs-navbar-collapse')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='/') Trips
-
-    .collapse.navbar-collapse#bs-navbar-collapse
-      ul.nav.navbar-nav.navbar-right
-        li: a(href='/trips/new') Create a Trip
-        li: a(href='/trips') Trips
-
+.pure-menu.pure-menu-open.pure-menu-horizontal
+      ul
+        li: a(href='/') Home
+        li: a(href='/trips/new') Take a Trip!
+        li: a(href='/trips') Adventures

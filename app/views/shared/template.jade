@@ -5,21 +5,22 @@ html(lang='en')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     title Trips
-    link(href='/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    //link(href='/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.5.0/pure-min.css')
+    link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css')
     link(rel='stylesheet', href='/css/style.css')
   body
     include nav
-    .container
-      .row
-        .col-xs-12
+    .pure-g
+      .pure-u-1.container
           block content
 
     script(src='/js/vendor/jquery-2.1.1.min.js')
     script(src='/js/vendor/lodash.min.js')
     script(src='/js/vendor/moment.min.js')
-    script(src='/bootstrap/js/bootstrap.min.js')
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyANcr_9Ku36Y9xZ3UoISclGCKhIW7p-0bc&sensor=true')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyANcr_9Ku36Y9xZ3UoISclGCKhIW7p-0bc&sensor=true&v=3&libraries=geometry')
     script(src='/js/user/main.js')
+
 
     block scripts
 

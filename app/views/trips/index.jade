@@ -1,0 +1,43 @@
+extends ../shared/template
+block content
+
+  table.pure-table
+    thead
+        tr
+          th Name
+          th Origin
+          th Destination
+          th Start
+          th End
+          th Distance
+          th Stops
+          th MPG
+          th Gas Price
+          th # Gallons
+          th Cash
+          th Cost
+          th Difference
+          th Events
+          th Photos
+      tbody
+        each trip in trips
+          tr
+            td: a(href='/trips/'+trip._id)= trip.tripName
+            td= trip.origin
+            td= trip.destination
+            td= moment(trip.start).format('LL')
+            td= moment(trip.end).format('LL')
+            td= trip.distance
+            td # stops
+            td= trip.mpg
+            td= trip.price
+            td gallons
+            td= trip.cash
+            td= trip.getCost()
+            td difference
+            td # events
+            td # photos
+
+block scripts
+  script(src='/js/user/new-trip.js')
+

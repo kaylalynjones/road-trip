@@ -1,43 +1,44 @@
 extends ../shared/template
 block content
-  .row
-    h2.text-center Create a Trip
-  .row
-    .col-md-12
-      form.form.form-horizontal(roll='form', method='post', action='/trips', enctype='multipart/form-data')
-        .form-group
-          label Name of Trip
-            input.form-control(type='text', name='name', placeholder='Grand Canyon Adventure')
-        .form-group
-          label Cash
-            input.form-control(type='number', name='cash', steps='any', placeholder='500')
-        .form-group
-          label Origin
-            input.form-control(type='text', name='origin', placeholder='Nashville')
-            input#originLat(type='hidden', name='lat')
-            input#originLng(type='hidden', name='lng')
-        .form-group
-          label Destination
-            input.form-control(type='text', name='destination', placeholder='Grand Canyon')
-            input#destinationLat(type='hidden', name='lat')
-            input#destinationLng(type='hidden', name='lng')
-        .form-group
-          label Chariot
-            input.form-control(type='file', name='carPhoto')
-        .form-group
-          label Start Date
-            input.form-control(type='date', name='start')
-        .form-group
-          label End Date
-            input.form-control(type='date', name='end')
-        .form-group
-          label Your Chariot's Miles Per Gallon
-            input.form-control(type='number', name='mpg', placeholder='25')
-        .form-group
-          label Price of Gas Per Gallon
-            input.form-control(type='number', name='price', placeholder='3.50', step='any')
-        .form-group
-          button.btn.btn-success.btn-block(type='submit') Submit
+
+      form.pure-form.pure-form-stacked(method='post', action='/trips', enctype='multipart/form-data')
+        fieldset
+            legend Create an Adventure!
+            .pure-g
+              .pure-u-1.pure-u-md-1-3
+                label(for='tripName') Name of Trip
+                input#trip-name.input-2-3(type='text', name='tripName', placeholder='Grand Canyon Adventure')
+              .pure-u-1.pure-u-md-1-3
+                label(for='origin') Origin
+                input#origin.input-2-3(type='text', name='origin', required='required', placeholder='Nashville')
+                input#originLat(type='hidden', name='originLat')
+                input#originLng(type='hidden', name='originLng')
+              .pure-u-1.pure-u-md-1-3
+                label(for='destination') Destination
+                input#destination.input-2-3(type='text', required='required', name='destination' placeholder='Grand Canyon')
+                input#destinationLat(type='hidden', name='destinationLat')
+                input#destinationLng(type='hidden', name='destinationLng')
+                input#distance(type='hidden', name='distance')
+              .pure-u-1.pure-u-md-1-3
+                label(for='start') Start Date
+                input#start.input-2-3(type='date', name='start')
+              .pure-u-1.pure-u-md-1-3
+                label(for='end') End Date
+                input#end.input-2-3(type='date', name='end')
+              .pure-u-1.pure-u-md-1-3
+                label(for='carPhoto') Your Ride
+                input#car-photo.input-2-3(type='file', name='carPhoto')
+              .pure-u-1.pure-u-md-1-3
+                label(for='cash') Cash
+                input#cash.input-2-3(type='number', steps='any', name='cash', placeholder='500.00')
+              .pure-u-1.pure-u-md-1-3
+                label(for='cash') MPG
+                input#cash.input-2-3(type='number', name='mpg', placeholder='25')
+              .pure-u-1.pure-u-md-1-3
+                label(for='cash') Average Price of Gas
+                input#cash.input-2-3(type='number', steps='any', name='price', placeholder='3.00')
+             .pure-g
+                button.pure-button.button-large.pure-button-primary#submit-button(type='submit') Let's Get Going!
 
 block scripts
   script(src='/js/user/new-trip.js')
