@@ -23,6 +23,8 @@ module.exports = function(app, express){
   app.get('/trips/:tripId', trips.show);
   app.post('/trips/:tripId/stops', stops.create);
   app.get('/trips/:tripId/stops/:stopId', stops.show);
+  app.post('/trips/:tripId/stops/:stopId/events', stops.addEvents);
+  app.post('/trips/:tripId/stops/:stopId/photos', stops.addPhotos);
 
   console.log('Express: Routes Loaded');
 };

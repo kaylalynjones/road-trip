@@ -52,8 +52,4 @@ describe('Trip', function(){
     });
   });
 
-  describe('.findById', function(){
-    it('should find a stop by id', function(){
-    });
-  });
 });//end

@@ -3,31 +3,34 @@ block content
   .pure-g
     .sidebar.pure-u-1.pure-u-md-1-4
       #map
-      .gallery.items-3
-        #item-1.control-operator
-        #item-2.control-operator
-        #item-3.control-operator
-        figure.item
-          h1 1
-        figure.item
-          h1 2
-        figure.item
-          h1 3
-      .controls
-        a.control-button(href='#item-1') •
-        a.control-button(href='#item-2') •
-        a.control-button(href='#item-3') •
-
-
+    .content.pure-u-1.pure-u-md-1-4
+      each photo in stop.photos
+        .photos(style='background-image: url("#{photo}");')
+  .pure-g
+    .sidebar.pure-u-1.pure-u-md-1-4
+      h1
+      button#cloneButton +
+      form#addEvent.pure-form.pure-form-stacked(method='post', action='/trips/'+stop.tripId+'/stops/'+stop._id+'/events')
+        fieldset
+          label Add an Event
+          .form-group
+            input.addEvent#event(type='text', name='events[]', placeholder='Kayaking')
+          button#addbutton(type='submit') Add
+      form#addPhotos.pure-form.pure-form-stacked(method='post', action='/trips/'+stop.tripId+'/stops/'+stop._id+'/photos', enctype='multipart/form-data')
+        fieldset
+          label(for='photo') Photos
+            input.input-lg#url(type='file', name='photos' multiple='true')
+            button#submitPhotos(type='submit') Add
     .content.pure-u-1.pure-u-md-3-4
+      #events
+        h2 Events:
+        -if (!stop.events || stop.events.length < 1) {
+          p#empty You have no scheduled events yet.
+        -}
+        ul
+          each event in stop.events
+            li= event
+
 block scripts
   script(src='/js/user/stops-show.js')
   
-        h1
-        button#cloneButton +
-        form#addEvent.pure-form.pure-form-stacked(method='post', action='/trips/'+stop.tripId+'/stops/'+stop._id+'/events')
-          fieldset
-            label Add an Event
-            .form-group
-              input.addEvent#event(type='text', name='event[]', placeholder='Kayaking')
-            button#addbutton(type='submit') Add

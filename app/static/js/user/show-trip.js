@@ -71,7 +71,7 @@
     }
   }
 
-  function addWaypoints() {
+  function addWaypoints(){
     $('');
   }
 

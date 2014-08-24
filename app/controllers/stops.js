@@ -27,3 +27,24 @@ exports.show = function(req, res){
     res.render('trips/trip-stop', {stop:stop});
   });
 };
+
+exports.addEvents = function(req, res){
+  console.log(req.body.events);
+  Stop.findById(req.params.stopId, function(stop){
+    console.log(stop);
+    stop.addEvents(req.body.events, function(events){
+      res.json(events);
+    });
+  });
+};
+
+exports.addPhotos = function(req, res){
+  Stop.findById(req.params.stopId, function(stop){
+    var form = new mp.Form();
+    form.parse(req, function(err, fields, files){
+      stop.addPhotos(files, function(){
+        res.redirect('/trips/'+req.params.tripId+'/stops/'+req.params.stopId);
+      });
+    });
+  });
+};

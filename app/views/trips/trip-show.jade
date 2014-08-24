@@ -1,8 +1,8 @@
 extends ../shared/template
 block content
 
+  #map-canvas
   .pure-g
-    #map-canvas
     .sidebar.pure-u-1.pure-u-md-1-4
       .car-photo(style='background-image: url(#{trip.carPhoto});')
       .header: h1= trip.tripName
