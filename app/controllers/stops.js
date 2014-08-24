@@ -31,7 +31,6 @@ exports.show = function(req, res){
 exports.addEvents = function(req, res){
   console.log(req.body.events);
   Stop.findById(req.params.stopId, function(stop){
-    console.log(stop);
     stop.addEvents(req.body.events, function(events){
       res.json(events);
     });
