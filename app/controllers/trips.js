@@ -25,5 +25,8 @@ exports.create = function(req, res){
 };
 
 exports.show = function(req, res){
+  Trip.findById(req.params.id, function(trip){
+    res.render('trips/trip-show', {trip:trip});
+  });
 };
 

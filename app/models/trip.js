@@ -56,7 +56,8 @@ Trip.prototype.uploadPhoto = function(photo){
 Trip.findAll = function(cb){
   Trip.collection.find().sort({start:1}).toArray(function(err, trips){
     trips = trips.map(function(trip){
-      return trip = _.create(Trip.prototype, trip);
+      trip = _.create(Trip.prototype, trip);
+      return trip;
     });
     cb(err, trips);
   });

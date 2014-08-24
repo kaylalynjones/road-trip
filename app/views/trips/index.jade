@@ -28,16 +28,16 @@ block content
             td= moment(trip.start).format('LL')
             td= moment(trip.end).format('LL')
             td= trip.distance
-            td # stops
+            td= trip.stops.length
             td= trip.mpg
             td= trip.price
-            td gallons
+            td= trip.getGallons()
             td= trip.cash
             td= trip.getCost()
-            td difference
-            td # events
-            td # photos
+            td= trip.getCost() - trip.cash
+            td trip.getEvents
+            td trip.getPhotos
 
 block scripts
-  script(src='/js/user/new-trip.js')
+  script(src='/js/user/trips.js')
 

@@ -3,9 +3,23 @@
 body{
   background-color: @base;
   background-image: url(../img/giftly.png);
+  
+  #nav {
+    background-color: salmon;
+
+    a {
+        color: white;
+    }
+
+    li a:hover {
+      background-color: slategrey !important;
+    }
+  }
 
   .container {
     margin: 5% 10%;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.42);
   }
 }
 
@@ -15,8 +29,18 @@ form {
     width: 230px;
   }
 
+  legend {
+    font-size: 20px;
+  }
+
   #submit-button {
     width: 230px;
     margin: 40px 3px;
+    background-color: salmon;
+    color: white;
+  }
+
+  #submit-button:hover {
+    background-color: slategrey;
   }
 }
