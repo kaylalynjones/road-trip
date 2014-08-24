@@ -5,7 +5,8 @@ var morgan         = require('morgan'),
     methodOverride = require('express-method-override'),
     less           = require('less-middleware'),
     home           = require('../controllers/home'),
-    trips          = require('../controllers/trips');
+    trips          = require('../controllers/trips'),
+    stops          = require('../controllers/stops');
 
 module.exports = function(app, express){
   app.use(morgan('dev'));
@@ -19,7 +20,9 @@ module.exports = function(app, express){
   app.get('/trips/new', trips.init);
   app.post('/trips', trips.create);
   app.get('/trips', trips.index);
-  app.get('/trips/:id', trips.show);
+  app.get('/trips/:tripId', trips.show);
+  app.post('/trips/:tripId/stops', stops.create);
+  app.get('/trips/:tripId/stops/:stopId', stops.show);
 
   console.log('Express: Routes Loaded');
 };

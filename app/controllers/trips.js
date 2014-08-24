@@ -10,7 +10,6 @@ exports.init = function(req, res){
 
 exports.index = function(req, res){
   Trip.findAll(function(err, trips){
-    console.log(trips);
     res.render('trips/index', {trips:trips, moment:moment});
   });
 };
@@ -25,7 +24,7 @@ exports.create = function(req, res){
 };
 
 exports.show = function(req, res){
-  Trip.findById(req.params.id, function(trip){
+  Trip.findById(req.params.tripId, function(trip){
     res.render('trips/trip-show', {trip:trip});
   });
 };

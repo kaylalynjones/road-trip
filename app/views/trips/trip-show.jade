@@ -3,13 +3,17 @@ block content
 
   .pure-g
     .sidebar.pure-u-1.pure-u-md-1-4
-      .car-photo(style='background-image: url(#{trip.photo});')
-      .header: h1 Vacation Name
+      .car-photo(style='background-image: url(#{trip.carPhoto});')
+      .header: h1= trip.tripName
+      button#cloneButton +
       form#addStop.pure-form.pure-form-stacked(method='post', action='/trips/'+trip._id+'/stops')
         fieldset
           label Add a Stop
-          input.addStop(type='text', name='stop', placeholder='Grand Ole Opry')
-          button(type='submit') Add
+          .form-group
+            input.addStop#stop(type='text', name='stop[]', placeholder='Atlanta, GA')
+            input#stopLat(type='hidden', name='stopLat[]')
+            input#stopLng(type='hidden', name='stopLng[]')
+          button#addbutton(type='submit') Add
     .content.pure-u-1.pure-u-md-3-4
       .pure-g
         #stopsMap
@@ -17,10 +21,16 @@ block content
         .pure-u-2-5
           #stops
             h2 Stops:
-              p: a(href='#') Blah Blah Blah
+            -if (!trip.stops || trip.stops.length < 1) {
+              p#empty You have no scheduled stops yet.
+            -}
+            ol
+              each stop in trip.stops
+                li: a(href='/trips/'+trip._id+'/stops/'+stop._id)= stop.name
+
         .pure-u-3-5
           #directions
 
 block scripts
   script(src='/js/user/show-trip.js')
-          
+

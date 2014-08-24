@@ -4,7 +4,7 @@
 
 function geocode(address, cb){
   'use strict';
-
+  console.log('geocode ' + address);
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode({address: address}, function(results, status){
     var name = results[0].formatted_address,
@@ -14,12 +14,6 @@ function geocode(address, cb){
   });
 }
 
-function initMap(selector, lat, lng, zoom){
-  'use strict';
-  var mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP},
-             map = new google.maps.Map(document.getElementById(selector), mapOptions);
-  return map;
-}
 
 function addMarker(map, lat, lng, name){
   'use strict';

@@ -3,6 +3,7 @@
 var Mongo = require('mongodb'),
     fs    = require('fs'),
     _     = require('lodash'),
+    Stop  = require('./stop'),
     path  = require('path');
 
 function Trip(fields){
@@ -67,7 +68,10 @@ Trip.findById = function(id, cb){
   var _id = Mongo.ObjectID(id);
   Trip.collection.findOne({_id:_id}, function(err, trip){
     trip = _.create(Trip.prototype, trip);
-    cb(trip);
+    Stop.findByTripId(id, function(stops){
+      trip.stops = stops;
+      cb(trip);
+    });
   });
 };
 
