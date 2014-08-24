@@ -6,10 +6,10 @@
     $('#cloneButton').click(cloneInput);
     $('form').submit(geocodeStops);
 
-    initializeMap();
+    initMap(32, 9, 7);
   });
 
-  function initializeMap() {
+  /*function initializeMap() {
     var directionsDisplay = new google.maps.DirectionsRenderer();
     var mapOptions = {
       zoom: 7,
@@ -18,8 +18,12 @@
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     directionsDisplay.setMap(map);
     directionsDisplay.setPanel(document.getElementById('directions'));
+  }*/
+  function initMap(lat, lng, zoom){
+    var styles = [{'featureType':'road','elementType':'geometry','stylers':[{'lightness':100},{'visibility':'simplified'}]},{'featureType':'water','elementType':'geometry','stylers':[{'visibility':'on'},{'color':'#C6E2FF'}]},{'featureType':'poi','elementType':'geometry.fill','stylers':[{'color':'#C5E3BF'}]},{'featureType':'road','elementType':'geometry.fill','stylers':[{'color':'#D1D1B8'}]}],
+        mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP, styles: styles},
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   }
-
   function cloneInput(){
     var $last  = $('#addStop .form-group:last-of-type'),
         $clone = $last.clone();
@@ -74,9 +78,4 @@
     }
   }
 
-  function initMap(selector, lat, lng, zoom){
-    var mapOptions = {center: new google.maps.LatLng(lat, lng), zoom: zoom, mapTypeId: google.maps.MapTypeId.ROADMAP},
-               map = new google.maps.Map(document.getElementById(selector), mapOptions);
-    return map;
-  }
 })();
