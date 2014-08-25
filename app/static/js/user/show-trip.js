@@ -5,7 +5,20 @@
   $('document').ready(function(){
     $('#cloneButton').click(cloneInput);
     $('form').submit(geocodeStops);
+
+    initializeMap();
   });
+
+  function initializeMap() {
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var mapOptions = {
+      zoom: 7,
+      center: new google.maps.LatLng(15, -90)
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions'));
+  }
 
   function cloneInput(){
     var $last  = $('#addStop .form-group:last-of-type'),
