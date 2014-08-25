@@ -1,9 +1,9 @@
 extends ../shared/template
 block content
+  #map
   .pure-g
-    .sidebar.pure-u-1.pure-u-md-1-4
-      #map
     .content.pure-u-1.pure-u-md-1-4
+      h2#stopValues(data-name=stop.name, data-lat=stop.lat, data-lng=stop.lng)= stop.name
       each photo in stop.photos
         .photos(style='background-image: url("#{photo}");')
   .pure-g

@@ -20,6 +20,11 @@ block content
         #stopsMap
       .pure-g
         .pure-u-2-5
+          #origin(data-lat=trip.originLat, data-lng=trip.originLng)
+            h2 Origin: #{trip.origin}
+          #destination(data-lat=trip.destinationLat, data-lng=trip.destinationLng)
+            h2 Destination: #{trip.destination}
+
           #stops
             h2 Stops:
             -if (!trip.stops || trip.stops.length < 1) {
