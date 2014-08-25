@@ -2,23 +2,24 @@
 (function(){
   'use strict';
 
+  var map, stops;
+
   $('document').ready(function(){
     $('#cloneButton').click(cloneInput);
     $('form').submit(geocodeStops);
 
-    initializeMap();
-  });
+    stops = $('#stops > ol > li').toArray().map(function(stop){
+      return {
+        name: $(stop).find('a').val(),
+         lat: $(stop).data('lat'),
+         lng: $(stop).data('lng')
+      };
+    });
 
-  function initializeMap() {
-    var directionsDisplay = new google.maps.DirectionsRenderer();
-    var mapOptions = {
-      zoom: 7,
-      center: new google.maps.LatLng(15, -90)
-    };
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    directionsDisplay.setMap(map);
-    directionsDisplay.setPanel(document.getElementById('directions'));
-  }
+    initMap('map-canvas', 15, -70);
+    displayDirections();
+    addWaypoints();
+  });
 
   function cloneInput(){
     var $last  = $('#addStop .form-group:last-of-type'),
@@ -27,6 +28,46 @@
       $(this).val('');
     });
     $last.after($clone);
+  }
+
+  function displayDirections(){
+    var directionsService = new google.maps.DirectionsService(),
+        directionsDisplay = new google.maps.DirectionsRenderer();
+    directionsDisplay.setMap(map);
+    directionsDisplay.setPanel(document.getElementById('directions'));
+
+    var waypoints = stops.map(function(stop){
+      return new google.maps.LatLng(stop.lat, stop.lng);
+    });
+
+    if(waypoints.length > 1){
+      var origin      = waypoints[0],
+          destination = waypoints[waypoints.length - 1];
+      waypoints.shift();
+      waypoints.pop();
+
+      waypoints = waypoints.map(function(wp){
+        return {location:wp, stopover:true};
+      });
+
+      var request = {
+        origin:origin,
+        destination:destination,
+        waypoints:waypoints,
+        optimizeWaypoints: false,
+        travelMode: google.maps.TravelMode.DRIVING
+      };
+
+      directionsService.route(request, function(response, status){
+        if(status === google.maps.DirectionsStatus.OK){
+          directionsDisplay.setDirections(response);
+        }
+      });
+    }
+  }
+
+  function addWaypoints() {
+    $('')
   }
 
   function geocodeStops(e){

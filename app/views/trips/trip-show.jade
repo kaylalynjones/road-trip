@@ -27,7 +27,8 @@ block content
             -}
             ol
               each stop in trip.stops
-                li: a(href='/trips/'+trip._id+'/stops/'+stop._id)= stop.name
+                li(data-lat=stop.lat, data-lng=stop.lng)
+                  a(href='/trips/'+trip._id+'/stops/'+stop._id)= stop.name
 
         .pure-u-3-5
           #directions
